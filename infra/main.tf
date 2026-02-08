@@ -14,13 +14,11 @@ terraform {
     region         = "us-east-1"
     dynamodb_table = "bryan-overbey-web-tflock"
     encrypt        = true
-    profile        = "bryan-personal"
   }
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = "bryan-personal"
+  region = var.aws_region
 }
 
 # ──────────────────────────────────────────────

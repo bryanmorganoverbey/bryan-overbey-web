@@ -37,3 +37,23 @@ output "github_actions_role_arn" {
   description = "IAM role ARN for GitHub Actions to assume"
   value       = aws_iam_role.github_actions.arn
 }
+
+output "github_actions_terraform_role_arn" {
+  description = "IAM role ARN for GitHub Actions to run Terraform"
+  value       = aws_iam_role.github_actions_terraform.arn
+}
+
+output "ecr_repository_url" {
+  description = "ECR repository URL for the Lambda container image"
+  value       = aws_ecr_repository.fuel_sorter.repository_url
+}
+
+output "api_url" {
+  description = "API Gateway URL"
+  value       = "https://api.${var.domain_name}"
+}
+
+output "lambda_temp_bucket" {
+  description = "S3 bucket for Lambda temp file storage"
+  value       = aws_s3_bucket.lambda_temp.id
+}
