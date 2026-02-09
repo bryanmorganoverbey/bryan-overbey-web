@@ -48,6 +48,22 @@ resource "aws_s3_bucket_public_access_block" "lambda_temp" {
   restrict_public_buckets = true
 }
 
+resource "aws_s3_bucket_cors_configuration" "lambda_temp" {
+  bucket = aws_s3_bucket.lambda_temp.id
+
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT", "GET"]
+    allowed_origins = [
+      "https://${var.domain_name}",
+      "https://www.${var.domain_name}",
+      "http://localhost:3000",
+    ]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3600
+  }
+}
+
 resource "aws_s3_bucket_lifecycle_configuration" "lambda_temp" {
   bucket = aws_s3_bucket.lambda_temp.id
 
